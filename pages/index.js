@@ -49,7 +49,7 @@ export default function Home({ chowList }) {
     </div>
   )
 }
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const chowList = await getAllChows()
   return { props: { chowList, }}
 }
