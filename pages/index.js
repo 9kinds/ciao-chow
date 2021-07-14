@@ -1,14 +1,9 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { getAllChows } from '../lib/fetch'
 
-export async function getServerSideProps(){ 
-  const res = await getAllChows()
-  const data = await res.json()
-console.log(data)
-return { props: { data }}}
-export default function Home() {
-  getAllChows()
+export default function Home({ chowList }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,9 +16,17 @@ export default function Home() {
           Ciao, Chow!
         </h1>
         <p className={styles.description}>
-          find <em>your</em> floof!
+          find <em>your</em> floof! 
         </p>
-        {res.map((animal) => {<p>{animal.name}</p>})}
+        <ul>
+        {chowList.map(
+          (chow) => (
+            <li key={chow.id}>{chow.name} </li>))}
+        </ul>
+
+        {chowList.map((chow) => 
+    chow.primary_photo_cropped && chow.primary_photo_cropped.medium ? <Image src={chow.primary_photo_cropped.medium} width={450} height={450} /> : <span>no image available</span>
+  )}
 
        <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -69,3 +72,9 @@ export default function Home() {
     </div>
   )
 }
+export async function getStaticProps(){
+  const chowList = await getAllChows()
+  return { props: { chowList, }}
+}
+
+           
