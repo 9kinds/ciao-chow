@@ -25,7 +25,7 @@ export default function Home({ chowList }) {
         </ul>
 
         {chowList.map((chow) => 
-    chow.primary_photo_cropped && chow.primary_photo_cropped.medium ? <Image src={chow.primary_photo_cropped.medium} width={450} height={450} /> : <span>no image available</span>
+    chow.primary_photo_cropped && chow.primary_photo_cropped.medium ? <Image key={chow.id} src={chow.primary_photo_cropped.medium} width={450} height={450} /> : <span key={chow.id}>no image available</span>
   )}
 
        <div className={styles.grid}>
