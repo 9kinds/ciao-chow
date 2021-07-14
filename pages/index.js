@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import { getAllChows } from '../lib/fetch'
 
-export default function Home() {
+export default function Home({ chowList }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -12,22 +13,32 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-      <h1 className={styles.title}>
+        <h1 className={styles.title}>
           Ciao, Chow!
         </h1>
         <p className={styles.description}>
-          find <em>your</em> floof!
+          find <em>your</em> floof! 
         </p>
-        <div className={styles.grid}>
-        <Link href="/">
-          <a className={styles.card}>
-          <Image 
-            src="/images/yes-this-is-blog.jpg" 
-            width={547/4} height={456/4}></Image>
-            <div><h2>name</h2>
-            <h3>location</h3></div>
+        <ul>
+        {chowList.map(
+          (chow) => (
+            <li key={chow.id}>{chow.name} </li>))}
+        </ul>
+
+        {chowList.map((chow) => 
+    chow.primary_photo_cropped && chow.primary_photo_cropped.medium ? 
+    <Image key={chow.id} 
+    src={chow.primary_photo_cropped.medium} 
+    width={450} height={450} /> 
+    : <span key={chow.id}>no image available</span>
+  )}
+
+       <div className={styles.grid}>
+          <a href="https://nextjs.org/docs" className={styles.card}>
+            <h3>Documentation &rarr;</h3>
+            <p>Find in-depth information about Next.js features and API.</p>
           </a>
-</Link>
+
 
 
           <a href="https://nextjs.org/learn" className={styles.card}>
@@ -68,3 +79,9 @@ export default function Home() {
     </div>
   )
 }
+export async function getStaticProps(){
+  const chowList = await getAllChows()
+  return { props: { chowList, }}
+}
+
+           
