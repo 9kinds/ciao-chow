@@ -1,16 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Layout from '../components/layout'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import { getAllChows } from '../lib/fetch'
 
 export default function Home({ chowList }) {
+  console.log("chowList", typeof chowList)
   return (
+    <Layout home>
     <div className={styles.container}>
-      <Head>
-        <title>Ciao, Chow!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -19,18 +18,18 @@ export default function Home({ chowList }) {
         <p className={styles.description}>
           find <em>your</em> floof! 
         </p>
-        <p>these dogs are currently available for adoption and have
-        their primary breed listed as Chow Chow. <a href="">Click here</a> to see dogs
-        who have Chow Chow listed among their secondary breeds.</p>
+        <p>these dogs are currently available for adoption through Petfinder, all having
+        their breed listed as Chow Chow. please note they may have Chow as a secondary 
+        breed rather than primary, so they may not look like a traditional Chow.</p>
 <div className={styles.grid}>
         {chowList.map((chow) => 
-        <a href="" key={chow.id} className={styles.card}>
+        <Link href={`/details/${chow.id}`} key={chow.id}><a  className={styles.card}>
     {chow.primary_photo_cropped && chow.primary_photo_cropped.small ? 
     <Image 
     src={chow.primary_photo_cropped.small} 
     width={300} height={300} /> 
     : <div className={styles.placeholder}><p>no image available</p></div>}
-    <h2>{chow.name}</h2></a>
+    <h2>{chow.name}</h2></a></Link>
   )}</div>
 
 
@@ -47,7 +46,8 @@ export default function Home({ chowList }) {
         </a>
       </footer>
     </div>
-  )
+    </Layout>
+    )
 }
 export async function getServerSideProps(){
   const chowList = await getAllChows()
