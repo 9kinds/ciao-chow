@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.css'
 import { getAllChows } from '../lib/fetch'
 
 export default function Home({ chowList }) {
-  console.log("chowList", typeof chowList)
   return (
     <Layout home>
     <div className={styles.container}>
