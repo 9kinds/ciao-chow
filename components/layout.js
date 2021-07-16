@@ -11,7 +11,7 @@ export default function Layout({ children, home }){
         <meta name="og:title" content={siteTitle} />
     </Head>
     <header>
-    {home ? <span>menu</span> : <ul><li><Link href="/"><a>home</a></Link></li><li>menu</li></ul>}
+    {home ? <span>(logo and menu placeholder)</span> : <ul><li><Link href="/"><a>home</a></Link></li><li>menu</li></ul>}
     </header>
     <main>{children}</main>
     </div>
