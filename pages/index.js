@@ -1,16 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Layout from '../components/layout'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import { getAllChows } from '../lib/fetch'
 
 export default function Home({ chowList }) {
   return (
+    <Layout home>
     <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -19,51 +17,21 @@ export default function Home({ chowList }) {
         <p className={styles.description}>
           find <em>your</em> floof! 
         </p>
-        <ul>
-        {chowList.map(
-          (chow) => (
-            <li key={chow.id}>{chow.name} </li>))}
-        </ul>
-
+        <p>these dogs are currently available for adoption through Petfinder, all having
+        their breed listed as Chow Chow. please note they may have Chow as a secondary 
+        breed rather than primary, so they may not look like a traditional Chow.</p>
+<div className={styles.grid}>
         {chowList.map((chow) => 
-    chow.primary_photo_cropped && chow.primary_photo_cropped.medium ? 
-    <Image key={chow.id} 
-    src={chow.primary_photo_cropped.medium} 
-    width={450} height={450} /> 
-    : <span key={chow.id}>no image available</span>
-  )}
-
-       <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <Link href={`/details/${chow.id}`} key={chow.id}><a  className={styles.card}>
+    {chow.primary_photo_cropped && chow.primary_photo_cropped.small ? 
+    <Image 
+    src={chow.primary_photo_cropped.small} 
+    width={300} height={300} /> 
+    : <div className={styles.placeholder}><p>no image available</p></div>}
+    <h2>{chow.name}</h2></a></Link>
+  )}</div>
 
 
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -77,9 +45,10 @@ export default function Home({ chowList }) {
         </a>
       </footer>
     </div>
-  )
+    </Layout>
+    )
 }
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const chowList = await getAllChows()
   return { props: { chowList, }}
 }
