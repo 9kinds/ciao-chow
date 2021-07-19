@@ -53,12 +53,7 @@ export default function Home({ chowList }) {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Powered by{' '}
-                        <Image
-                            src="/vercel.svg"
-                            alt="Vercel Logo"
-                            className={styles.logo}
-                        />
+                        Powered by Vercel
                     </a>
                 </footer>
             </div>
