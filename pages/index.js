@@ -40,7 +40,7 @@ export default function Home({ chowList }) {
             <div className="flex flex-col">
                 {chowList.map((chow) => (
                     <Link href={`/details/${chow.id}`} key={chow.id}>
-                        <a className="card">
+                        <a className="card cute-border">
                             {' '}
                             <h2 className="pb-1">{chow.name}</h2>
                             {chow.primary_photo_cropped &&

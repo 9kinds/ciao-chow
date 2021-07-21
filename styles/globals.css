@@ -9,6 +9,19 @@ h2 {
     @apply text-2xl;
 }
 .card {
-    @apply border-2 rounded-xl border-blue-200 text-center p-4 mb-4 hover:border-blue-700;
+    @apply text-center p-4 mb-4;
     width: 300px;
+}
+.cute-border {
+    @apply border-2 rounded-xl border-blue-200 hover:border-blue-700;
+}
+th,
+td {
+    @apply p-2;
+}
+tr td:first-of-type {
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    @apply bg-blue-100;
 }
