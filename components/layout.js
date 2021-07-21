@@ -1,18 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from './layout.module.css'
 
 export const siteTitle = 'Ciao, Chow!'
 
-export default function Layout({ children, home }){
-    return <div className={styles.container}>
-    <Head>
-    <link rel="icon" href="/favicon.ico" />
-        <meta name="og:title" content={siteTitle} />
-    </Head>
-    <header>
-    {home ? <span>(logo and menu placeholder)</span> : <ul><li><Link href="/"><a>home</a></Link></li><li>menu</li></ul>}
-    </header>
-    <main>{children}</main>
-    </div>
+export default function Layout({ children, home }) {
+    return (
+        <div className="mx-6 mb-4 mt-12 text-gray-700">
+            <Head>
+                <link rel="icon" href="/favicon.ico" />
+                <meta name="og:title" content={siteTitle} />
+            </Head>
+            <main>{children}</main>
+        </div>
+    )
 }

@@ -1,16 +1,14 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
+h1 {
+    @apply font-serif text-7xl;
 }
-
-* {
-  box-sizing: border-box;
+h2 {
+    @apply text-2xl;
+}
+.card {
+    @apply border-2 rounded-xl border-blue-200 text-center p-4 mb-4 hover:border-blue-700;
+    width: 300px;
 }

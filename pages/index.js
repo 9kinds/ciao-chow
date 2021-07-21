@@ -2,61 +2,77 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/layout'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+
 import { getAllChows } from '../lib/fetch'
 
 export default function Home({ chowList }) {
     return (
         <Layout home>
-            <div className={styles.container}>
-                <main className={styles.main}>
-                    <h1 className={styles.title}>Ciao, Chow!</h1>
-                    <p className={styles.description}>
-                        find <em>your</em> floof!
-                    </p>
-                    <p>
-                        these dogs are currently available for adoption through
-                        Petfinder, all having their breed listed as Chow Chow.
-                        please note they may have Chow as a secondary breed
-                        rather than primary, so they may not look like a
-                        traditional Chow.
-                    </p>
-                    <div className={styles.grid}>
-                        {chowList.map((chow) => (
-                            <Link href={`/details/${chow.id}`} key={chow.id}>
-                                <a className={styles.card}>
-                                    {chow.primary_photo_cropped &&
-                                    chow.primary_photo_cropped.small ? (
-                                        <Image
-                                            src={
-                                                chow.primary_photo_cropped.small
-                                            }
-                                            alt={`a dog named ${chow.name}`}
-                                            width={300}
-                                            height={300}
-                                        />
-                                    ) : (
-                                        <div className={styles.placeholder}>
-                                            <p>no image available</p>
-                                        </div>
-                                    )}
-                                    <h2>{chow.name}</h2>
-                                </a>
-                            </Link>
-                        ))}
-                    </div>
-                </main>
-
-                <footer className={styles.footer}>
-                    <a
-                        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Powered by Vercel
-                    </a>
-                </footer>
+            <h1 className="text-center">Ciao, Chow!</h1>
+            <h2 className="text-center">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 inline-block"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                >
+                    <path
+                        fillRule="evenodd"
+                        d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                        clipRule="evenodd"
+                    />
+                </svg>{' '}
+                find <em>your</em> floof!{' '}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 inline-block"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                >
+                    <path
+                        fillRule="evenodd"
+                        d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+            </h2>
+            <p className="py-6">witty copy coming soon! :p </p>
+            <div className="flex flex-col">
+                {chowList.map((chow) => (
+                    <Link href={`/details/${chow.id}`} key={chow.id}>
+                        <a className="card">
+                            {' '}
+                            <h2 className="pb-1">{chow.name}</h2>
+                            {chow.primary_photo_cropped &&
+                            chow.primary_photo_cropped.small ? (
+                                <Image
+                                    src={chow.primary_photo_cropped.small}
+                                    alt={`a dog named ${chow.name}`}
+                                    width={250}
+                                    height={250}
+                                />
+                            ) : (
+                                <Image
+                                    width={250}
+                                    height={250}
+                                    src="/No_image_available.svg"
+                                    alt="No image available for this pet"
+                                />
+                            )}
+                        </a>
+                    </Link>
+                ))}
             </div>
+
+            <footer>
+                <a
+                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Powered by Vercel
+                </a>
+            </footer>
         </Layout>
     )
 }
