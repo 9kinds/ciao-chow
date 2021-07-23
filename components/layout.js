@@ -11,8 +11,8 @@ export default function Layout({ children, home }) {
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="og:title" content={siteTitle} />
             </Head>
-            <main className="mx-6 mb-4 mt-12">{children}</main>
-            <nav className="w-full absolute bottom-0 p-6 flex flex-row justify-between items-center bg-gray-700 ">
+            <main className="mx-auto mt-14 mb-6">{children}</main>
+            <nav className="w-full p-6 flex flex-row justify-between items-center bg-gray-700 ">
                 {!home ? (
                     <Link href="/">
                         <a className="text-gray-50">back to home</a>
