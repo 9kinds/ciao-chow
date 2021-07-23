@@ -12,7 +12,7 @@ export default function Detail({ chowData }) {
     }
     return (
         <Layout>
-            <h1 className="text-center">Meet {chowData.name}!</h1>
+            <h1 className="text-center mb-6">Meet {chowData.name}!</h1>
             {chowData.primary_photo_cropped &&
             chowData.primary_photo_cropped.small ? (
                 <Image
@@ -41,45 +41,59 @@ export default function Detail({ chowData }) {
                     </ul>
                 </div>
             ) : null}
-            <table className="w-full">
-                <th colSpan="2">A few facts about {chowData.name}:</th>
-                <tr>
-                    <td>age</td>
-                    <td>{chowData.age}</td>{' '}
-                </tr>
-                <tr>
-                    <td>primary breed</td>
-                    <td>{chowData.breeds.primary}</td>
-                </tr>
-                <tr>
-                    <td>secondary breed</td>
-                    <td>{chowData.breeds.secondary}</td>
-                </tr>
-                <tr>
-                    <td>declawed</td>
-                    <td>{filterResponse(chowData.attributes.declawed)}</td>
-                </tr>
-                <tr>
-                    <td>house trained</td>
-                    <td>{filterResponse(chowData.attributes.house_trained)}</td>
-                </tr>
-                <tr>
-                    <td>spayed/neutered</td>
-                    <td>
-                        {filterResponse(chowData.attributes.spayed_neutered)}
-                    </td>
-                </tr>
-                <tr>
-                    <td>special needs</td>
-                    <td>{filterResponse(chowData.attributes.special_needs)}</td>
-                </tr>
-                <tr>
-                    <td>location</td>
-                    <td>
-                        {chowData.contact.address.city},{' '}
-                        {chowData.contact.address.state}
-                    </td>
-                </tr>
+            <table className="w-full max-w-xl mt-8">
+                <thead>
+                    <tr>
+                        <th className="text-xl" colSpan="2">
+                            A few facts about {chowData.name}:
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>age</td>
+                        <td>{chowData.age}</td>
+                    </tr>
+                    <tr>
+                        <td>primary breed</td>
+                        <td>{chowData.breeds.primary}</td>
+                    </tr>
+                    <tr>
+                        <td>secondary breed</td>
+                        <td>{chowData.breeds.secondary}</td>
+                    </tr>
+                    <tr>
+                        <td>declawed</td>
+                        <td>{filterResponse(chowData.attributes.declawed)}</td>
+                    </tr>
+                    <tr>
+                        <td>house trained</td>
+                        <td>
+                            {filterResponse(chowData.attributes.house_trained)}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>spayed/neutered</td>
+                        <td>
+                            {filterResponse(
+                                chowData.attributes.spayed_neutered
+                            )}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>special needs</td>
+                        <td>
+                            {filterResponse(chowData.attributes.special_needs)}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>location</td>
+                        <td>
+                            {chowData.contact.address.city},{' '}
+                            {chowData.contact.address.state}
+                        </td>
+                    </tr>
+                </tbody>
             </table>
             <h3 className="mt-6 mb-4">
                 Would you like to learn more about {chowData.name}?

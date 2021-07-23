@@ -16,6 +16,9 @@ module.exports = {
             fontFamily: {
                 serif: ['Sacramento', ...defaultTheme.fontFamily.serif],
             },
+            minWidth: {
+                300: '300px',
+            },
         },
     },
     variants: {

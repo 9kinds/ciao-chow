@@ -11,9 +11,17 @@ h2 {
 h3 {
     @apply text-2xl text-blue-700 font-semibold;
 }
+p {
+    @apply max-w-prose;
+}
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
 .card {
-    @apply text-center p-4 mb-4;
+    @apply text-center p-4 mb-4 flex-shrink-0;
     width: 300px;
+    min-width: 300px;
 }
 .cute-border {
     @apply border-2 rounded-xl border-blue-200 hover:border-blue-700;

@@ -37,7 +37,7 @@ export default function Home({ chowList }) {
                 </svg>
             </h2>
             <p className="py-6">witty copy coming soon! :p </p>
-            <div className="flex flex-col">
+            <div className="card-container">
                 {chowList.map((chow) => (
                     <Link href={`/details/${chow.id}`} key={chow.id}>
                         <a className="card cute-border">
@@ -63,16 +63,6 @@ export default function Home({ chowList }) {
                     </Link>
                 ))}
             </div>
-
-            <footer>
-                <a
-                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Powered by Vercel
-                </a>
-            </footer>
         </Layout>
     )
 }
