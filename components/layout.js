@@ -6,12 +6,14 @@ export const siteTitle = 'Ciao, Chow!'
 
 export default function Layout({ children, home }) {
     return (
-        <div className="flex flex-col mt-12 text-gray-700">
+        <div className="mt-12 text-gray-700">
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="og:title" content={siteTitle} />
             </Head>
-            <main className="mx-auto mt-14 mb-6">{children}</main>
+            <main className="flex flex-col items-center mx-6 mt-14 mb-6">
+                {children}
+            </main>
             <nav className="w-full p-6 flex flex-row justify-between items-center bg-gray-700 ">
                 {!home ? (
                     <Link href="/">
