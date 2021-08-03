@@ -15,12 +15,14 @@ export default function Layout({ children, home }) {
                 {children}
             </main>
             <nav className="w-full p-6 flex flex-row justify-between items-center bg-gray-700 ">
-                {!home ? (
+                {home ? (
+                    <Link href="#top">
+                        <a className="text-gray-50">back to top</a>
+                    </Link>
+                ) : (
                     <Link href="/">
                         <a className="text-gray-50">back to home</a>
                     </Link>
-                ) : (
-                    <span> </span>
                 )}
                 <a href="https://github.com/9kinds/ciao-chow">
                     <Image

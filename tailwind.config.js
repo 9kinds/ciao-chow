@@ -19,6 +19,10 @@ module.exports = {
             minWidth: {
                 300: '300px',
             },
+            screens: {
+                smed: '710px',
+                llg: '1024px',
+            },
         },
     },
     variants: {

@@ -15,14 +15,20 @@ p {
     @apply max-w-prose;
 }
 .card-container {
-    @apply w-full;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    @apply flex flex-col smed:grid smed:gap-6 smed:grid-cols-2;
+}
+@media (min-width: 1024px) {
+    .card-container {
+        @apply grid-cols-3;
+    }
 }
 .card {
-    @apply text-center p-4 mb-4 flex-shrink-0;
+    @apply text-center p-4 flex-none;
     width: 300px;
     min-width: 300px;
+}
+.card:not(:last-of-type) {
+    @apply mb-6 sm:mb-0;
 }
 .cute-border {
     @apply border-2 rounded-xl border-blue-200 hover:border-blue-700;
