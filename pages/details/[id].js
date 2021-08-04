@@ -10,15 +10,19 @@ export default function Detail({ chowData }) {
             return 'no'
         } else return 'not specified'
     }
+    const noShouting =
+        chowData.name.charAt(0).toUpperCase() +
+        chowData.name.slice(1).toLowerCase()
+
     return (
-        <Layout>
-            <h1 className="text-center mb-6">Meet {chowData.name}!</h1>
+        <Layout pageTitle={`A chow named ${noShouting}`}>
+            <h1 className="text-center mb-6">Meet {noShouting}!</h1>
             {chowData.primary_photo_cropped &&
             chowData.primary_photo_cropped.small ? (
                 <Image
                     className="block"
                     src={chowData.primary_photo_cropped.small}
-                    alt={`a dog named ${chowData.name}`}
+                    alt={`a dog named ${noShouting}`}
                     width={300}
                     height={300}
                 />
@@ -33,7 +37,7 @@ export default function Detail({ chowData }) {
             )}
             {chowData.tags.length > 0 ? (
                 <div className="cute-border py-4 px-6 my-4">
-                    {chowData.name} is described as:{' '}
+                    {noShouting} is described as:{' '}
                     <ul className="list-disc list-inside">
                         {chowData.tags.map((value) => (
                             <li key={value.index}>{value.toLowerCase()}</li>
@@ -45,7 +49,7 @@ export default function Detail({ chowData }) {
                 <thead>
                     <tr>
                         <th className="text-xl" colSpan="2">
-                            A few facts about {chowData.name}:
+                            A few facts about {noShouting}:
                         </th>
                     </tr>
                 </thead>
@@ -96,7 +100,7 @@ export default function Detail({ chowData }) {
                 </tbody>
             </table>
             <h3 className="mt-6 mb-4">
-                Would you like to learn more about {chowData.name}?
+                Would you like to learn more about {noShouting}?
             </h3>
             {chowData.contact.email ? (
                 <a

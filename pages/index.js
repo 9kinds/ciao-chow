@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/layout'
 import Link from 'next/link'
@@ -6,8 +5,11 @@ import Link from 'next/link'
 import { getAllChows } from '../lib/fetch'
 
 export default function Home({ chowList }) {
+    const noShouting = (name) => {
+        return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+    }
     return (
-        <Layout home>
+        <Layout home pageTitle="Ciao, Chow! Find your floof today!">
             <h1 className="text-center">Ciao, Chow!</h1>
             <h2 className="text-center">
                 <svg
@@ -36,18 +38,28 @@ export default function Home({ chowList }) {
                     />
                 </svg>
             </h2>
-            <p className="py-6">witty copy coming soon! :p </p>
+            <p className="mt-6 mb-3">
+                Do you love Chows? <em>We</em> love Chows! And we want to help
+                Chows find loving homes.
+            </p>
+            <p className="mb-9">
+                {' '}
+                These are dogs currently available for adoption through
+                Petfinder, with Chow Chow listed as their primary or secondary
+                breed type. Click on any picture to learn more about that
+                pupper.
+            </p>
             <div className="card-container">
                 {chowList.map((chow) => (
                     <Link href={`/details/${chow.id}`} key={chow.id}>
-                        <a className="card cute-border">
+                        <a className="card cute-border hover:border-blue-700">
                             {' '}
-                            <h2 className="pb-1">{chow.name}</h2>
+                            <h2 className="pb-1">{noShouting(chow.name)}</h2>
                             {chow.primary_photo_cropped &&
                             chow.primary_photo_cropped.small ? (
                                 <Image
                                     src={chow.primary_photo_cropped.small}
-                                    alt={`a dog named ${chow.name}`}
+                                    alt={`a dog named ${noShouting(chow.name)}`}
                                     width={250}
                                     height={250}
                                 />

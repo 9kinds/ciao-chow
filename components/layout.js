@@ -4,12 +4,21 @@ import Link from 'next/link'
 
 export const siteTitle = 'Ciao, Chow!'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, pageTitle }) {
     return (
         <div className="mt-12 text-gray-700">
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="og:title" content={siteTitle} />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                />
+                <meta
+                    name="description"
+                    content="Search Chow Chows currently available on Petfinder"
+                />
+                <title>{pageTitle}</title>
             </Head>
             <main className="flex flex-col items-center mx-6 mt-14 mb-6">
                 {children}
