@@ -1,6 +1,7 @@
 import { getAllChowIds, getChowData } from '../../lib/fetch'
 import Image from 'next/image'
 import Layout from '../../components/layout'
+import styles from './[id].module.css'
 
 export default function Detail({ chowData }) {
     const filterResponse = (prop) => {
@@ -12,72 +13,83 @@ export default function Detail({ chowData }) {
     }
     const noShouting =
         chowData.name.charAt(0).toUpperCase() +
-        chowData.name.slice(1).toLowerCase()
+        chowData.name.slice(1).toLowerCase().trim()
 
     return (
         <Layout pageTitle={`A chow named ${noShouting}`}>
-            <h1 className="text-center mb-6">Meet {noShouting}!</h1>
-            {chowData.primary_photo_cropped &&
-            chowData.primary_photo_cropped.small ? (
-                <Image
-                    className="block"
-                    src={chowData.primary_photo_cropped.small}
-                    alt={`a dog named ${noShouting}`}
-                    width={300}
-                    height={300}
-                />
-            ) : (
-                <Image
-                    className="block"
-                    width={300}
-                    height={300}
-                    src="/No_image_available.svg"
-                    alt="No image available for this pet"
-                />
-            )}
-            {chowData.tags.length > 0 ? (
-                <div className="cute-border py-4 px-6 my-4">
-                    {noShouting} is described as:{' '}
-                    <ul className="list-disc list-inside">
-                        {chowData.tags.map((value) => (
-                            <li key={value.index}>{value.toLowerCase()}</li>
-                        ))}
-                    </ul>
-                </div>
-            ) : null}
-            <table className="w-full max-w-xl mt-8">
-                <thead>
-                    <tr>
-                        <th className="text-xl" colSpan="2">
-                            A few facts about {noShouting}:
-                        </th>
-                    </tr>
-                </thead>
+            <div className="flex flex-col">
+                <span className="text-5xl font-serif -m-5">Meet</span>{' '}
+                <h1 className="text-center mb-6 pl-6">{noShouting}!</h1>
+            </div>
+            <div
+                className={
+                    chowData.tags.length > 0
+                        ? 'flex flex-col w-full items-center sm:flex-row sm:justify-center '
+                        : ''
+                }
+            >
+                {chowData.primary_photo_cropped &&
+                chowData.primary_photo_cropped.small ? (
+                    <Image
+                        className="block object-cover py-4"
+                        src={chowData.primary_photo_cropped.small}
+                        alt={`a dog named ${noShouting}`}
+                        width={300}
+                        height={300}
+                    />
+                ) : (
+                    <Image
+                        className="block"
+                        width={300}
+                        height={300}
+                        src="/No_image_available.svg"
+                        alt="No image available for this pet"
+                    />
+                )}
+                {chowData.tags.length > 0 ? (
+                    <div className="cute-border py-4 px-6 my-4 sm:ml-4">
+                        {noShouting} is described as:{' '}
+                        <ul className="list-disc list-inside">
+                            {chowData.tags.map((value) => (
+                                <li key={value}>{value.toLowerCase()}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : null}
+            </div>
+            <table className="w-full max-w-xl">
+                <caption className={styles.caption}>
+                    A few facts about {noShouting}:
+                </caption>
                 <tbody>
                     <tr>
-                        <td>age</td>
+                        <th className={styles.textAlignUnset}>age</th>
                         <td>{chowData.age}</td>
                     </tr>
                     <tr>
-                        <td>primary breed</td>
+                        <th className={styles.textAlignUnset}>primary breed</th>
                         <td>{chowData.breeds.primary}</td>
                     </tr>
                     <tr>
-                        <td>secondary breed</td>
+                        <th className={styles.textAlignUnset}>
+                            secondary breed
+                        </th>
                         <td>{chowData.breeds.secondary}</td>
                     </tr>
                     <tr>
-                        <td>declawed</td>
+                        <th className={styles.textAlignUnset}>declawed</th>
                         <td>{filterResponse(chowData.attributes.declawed)}</td>
                     </tr>
                     <tr>
-                        <td>house trained</td>
+                        <th className={styles.textAlignUnset}>house trained</th>
                         <td>
                             {filterResponse(chowData.attributes.house_trained)}
                         </td>
                     </tr>
                     <tr>
-                        <td>spayed/neutered</td>
+                        <th className={styles.textAlignUnset}>
+                            spayed/neutered
+                        </th>
                         <td>
                             {filterResponse(
                                 chowData.attributes.spayed_neutered
@@ -85,13 +97,13 @@ export default function Detail({ chowData }) {
                         </td>
                     </tr>
                     <tr>
-                        <td>special needs</td>
+                        <th className={styles.textAlignUnset}>special needs</th>
                         <td>
                             {filterResponse(chowData.attributes.special_needs)}
                         </td>
                     </tr>
                     <tr>
-                        <td>location</td>
+                        <th className={styles.textAlignUnset}>location</th>
                         <td>
                             {chowData.contact.address.city},{' '}
                             {chowData.contact.address.state}
@@ -158,7 +170,7 @@ export default function Detail({ chowData }) {
                         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     />
                 </svg>{' '}
-                View {chowData.name} on Petfinder site
+                View {chowData.name} on the Petfinder site
             </a>
         </Layout>
     )
@@ -168,14 +180,3 @@ export async function getServerSideProps({ params }) {
     const chowData = await getChowData(params.id)
     return { props: { chowData } }
 }
-// this returns an array of possible values for id
-// export async function getStaticPaths() {
-//     const paths = await getAllChowIds()
-//     return { paths, fallback: false }
-// }
-
-// this fetches the necessary data for the post with id
-// export async function getStaticProps({ params }) {
-//     const chowData = await getChowData(params.id)
-//     return { props: { chowData } }
-// }

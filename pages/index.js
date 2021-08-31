@@ -54,7 +54,9 @@ export default function Home({ chowList }) {
                     <Link href={`/details/${chow.id}`} key={chow.id}>
                         <a className="card cute-border hover:border-blue-700">
                             {' '}
-                            <h2 className="pb-1">{noShouting(chow.name)}</h2>
+                            <h2 className="pb-1 mt-auto">
+                                {noShouting(chow.name)}
+                            </h2>
                             {chow.primary_photo_cropped &&
                             chow.primary_photo_cropped.small ? (
                                 <Image
@@ -62,6 +64,7 @@ export default function Home({ chowList }) {
                                     alt={`a dog named ${noShouting(chow.name)}`}
                                     width={250}
                                     height={250}
+                                    className="object-cover"
                                 />
                             ) : (
                                 <Image

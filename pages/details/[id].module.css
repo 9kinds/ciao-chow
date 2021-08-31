@@ -1,0 +1,11 @@
+.caption {
+    text-align: left;
+}
+.sideBySide {
+    display: flex;
+    align-items: center;
+}
+
+.textAlignUnset {
+    text-align: unset;
+}
