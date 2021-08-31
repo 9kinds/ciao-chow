@@ -1,7 +1,7 @@
-import { getAllChowIds, getChowData } from '../../lib/fetch'
+import { getAllChowIds, getChowData } from '../lib/fetch'
 import Image from 'next/image'
-import Layout from '../../components/layout'
-import styles from './[id].module.css'
+import Layout from '../components/layout'
+import styles from '../styles/[id].module.css'
 
 export default function Detail({ chowData }) {
     const filterResponse = (prop) => {
@@ -57,7 +57,7 @@ export default function Detail({ chowData }) {
                     </div>
                 ) : null}
             </div>
-            <table className="w-full max-w-xl">
+            <table className="w-full max-w-xl sm:mt-4">
                 <caption className={styles.caption}>
                     A few facts about {noShouting}:
                 </caption>
@@ -74,7 +74,7 @@ export default function Detail({ chowData }) {
                         <th className={styles.textAlignUnset}>
                             secondary breed
                         </th>
-                        <td>{chowData.breeds.secondary}</td>
+                        <td>{filterResponse(chowData.breeds.secondary)}</td>
                     </tr>
                     <tr>
                         <th className={styles.textAlignUnset}>declawed</th>

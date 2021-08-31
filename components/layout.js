@@ -25,7 +25,7 @@ export default function Layout({ children, home, pageTitle }) {
             </main>
             <nav className="w-full p-6 flex flex-row justify-between items-center bg-gray-700 ">
                 {home ? (
-                    <Link href="#top">
+                    <Link href="#">
                         <a className="text-gray-50">back to top</a>
                     </Link>
                 ) : (

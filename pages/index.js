@@ -51,7 +51,7 @@ export default function Home({ chowList }) {
             </p>
             <div className="card-container">
                 {chowList.map((chow) => (
-                    <Link href={`/details/${chow.id}`} key={chow.id}>
+                    <Link href={`/${chow.id}`} key={chow.id}>
                         <a className="card cute-border hover:border-blue-700">
                             {' '}
                             <h2 className="pb-1 mt-auto">
