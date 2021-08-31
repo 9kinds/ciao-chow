@@ -10,7 +10,12 @@ export default function Home({ chowList }) {
     }
     return (
         <Layout home pageTitle="Ciao, Chow! Find your floof today!">
-            <h1 className="text-center">Ciao, Chow!</h1>
+            <div className="flex flex-col">
+                <span className="text-5xl font-serif -m-5">Ciao,</span>
+                <h1 className="text-center mb-6 pl-6 tracking-tighter">
+                    Chow!
+                </h1>
+            </div>
             <h2 className="text-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

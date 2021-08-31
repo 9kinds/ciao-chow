@@ -19,7 +19,9 @@ export default function Detail({ chowData }) {
         <Layout pageTitle={`A chow named ${noShouting}`}>
             <div className="flex flex-col">
                 <span className="text-5xl font-serif -m-5">Meet</span>{' '}
-                <h1 className="text-center mb-6 pl-6">{noShouting}!</h1>
+                <h1 className="text-center mb-6 pl-6 tracking-tighter">
+                    {noShouting}!
+                </h1>
             </div>
             <div
                 className={
@@ -117,7 +119,7 @@ export default function Detail({ chowData }) {
             {chowData.contact.email ? (
                 <a
                     className="pl-4 block mb-4"
-                    href={`mailto:{chowData.contact.email}`}
+                    href={`mailto:${chowData.contact.email}`}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +139,10 @@ export default function Detail({ chowData }) {
                 </a>
             ) : null}
             {chowData.contact.phone ? (
-                <a className="pl-4 block mb-4">
+                <a
+                    className="pl-4 block mb-4"
+                    href={`tel:${chowData.contact.phone}`}
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5 inline-block"
