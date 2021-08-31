@@ -16,21 +16,14 @@ p {
     @apply max-w-prose;
 }
 .card-container {
-    @apply flex flex-col smed:grid smed:gap-6 smed:grid-cols-2;
-}
-@media (min-width: 1024px) {
-    .card-container {
-        @apply grid-cols-3;
-    }
+    @apply flex flex-wrap gap-6 justify-center;
 }
 .card {
     @apply text-center p-4 flex flex-col transition duration-500 ease-in-out hover:shadow-2xl;
     width: 300px;
     min-width: 300px;
 }
-.card:not(:last-of-type) {
-    @apply mb-6 sm:mb-0;
-}
+
 .cute-border {
     @apply border-2 rounded-xl border-blue-200;
 }
